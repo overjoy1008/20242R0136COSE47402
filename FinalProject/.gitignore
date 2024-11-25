@@ -1,0 +1,21 @@
+# Environment Variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ignore Models
+Assets/Models/*
