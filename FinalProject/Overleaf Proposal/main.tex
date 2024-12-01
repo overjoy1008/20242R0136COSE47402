@@ -1,0 +1,269 @@
+%%%%%%%% ICML 2019 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2019} with \usepackage[nohyperref]{icml2019} above.
+\usepackage{hyperref}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+%\usepackage{icml2019}
+
+% If accepted, instead use the following line for the camera-ready submission:
+\usepackage[accepted]{icml2019}
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{COSE474-2024F: Final Project Proposal}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{COSE474-2024F: Final Project Proposal \\
+           ``Self-Optimizing Character Dialogue Generation using Prompt Tuning''}
+
+% It is OKAY to include author information, even for blind
+% submissions: the style file will automatically remove it for you
+% unless you've provided the [accepted] option to the icml2019
+% package.
+
+% List of affiliations: The first argument should be a (short)
+% identifier you will use later to specify author affiliations
+% Academic affiliations should list Department, University, City, Region, Country
+% Industry affiliations should list Company, City, Region, Country
+
+% You can specify symbols, otherwise they are numbered in order.
+% Ideally, you should not use this facility. Affiliations will be numbered
+% in order of appearance and this is the preferred way.
+\icmlsetsymbol{equal}{*}
+
+\begin{icmlauthorlist}
+\icmlauthor{2021170964 Kyoungbin Park}{}
+\end{icmlauthorlist}
+%\icmlaffiliation{ku}{Department of Computer Science \& Engineering, Korea University, Seoul, Korea}
+
+
+%\icmlcorrespondingauthor{the}{myemail@korea.ac.kr}
+%\icmlcorrespondingauthor{Eee Pppp}{ep@eden.co.uk}
+
+% You may provide any keywords that you
+% find helpful for describing your paper; these are used to populate
+% the "keywords" metadata in the PDF but will not be shown in the document
+\icmlkeywords{Machine Learning, ICML, Deep Learning, NLP, LLM, Mistral, Fine Tuning, Prompt Tuning}
+
+\vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column
+% listing the affiliations and the copyright notice.
+% The command takes one argument, which is text to display at the start of the footnote.
+% The \icmlEqualContribution command is standard text for equal contribution.
+% Remove it (just {}) if you do not need this facility.
+
+%\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+%\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+
+%\begin{abstract}
+%This document provides a basic paper template and submission guidelines.
+%Abstracts must be a single paragraph, ideally between 4--6 sentences long.
+%Gross violations will trigger corrections at the camera-ready phase.
+%\end{abstract}
+
+
+
+\section{Introduction}
+The remarkable success of subculture games like Genshin Impact, Star Rail, Zenless Zone Zero, and Wuthering Waves demonstrates the substantial market demand for this genre. Among the numerous subculture games available, titles from HoYoverse and Kuro Games consistently achieve exceptional revenue primarily due to three key factors: distinct character personalities, compelling storylines, and immersive dialogue interactions with these characters.
+However, current dialogue systems in subculture games face significant limitations due to their predetermined nature. This creates two major challenges:
+\begin{itemize}
+\item \textbf{Limited Player Agency}: Players often must select from predetermined responses, sometimes forcing them into dialogue choices that don't align with their preferred interaction style.
+\item \textbf{Resource-Intensive Content Creation}: Companies must pre-generate all dialogue content before release, requiring substantial time and financial investment. This prevents players from engaging in new conversations with characters they've grown attached to unless the company releases updates.
+\end{itemize}
+These limitations lead to a gradual decline in character engagement over time, as companies lack incentive to continuously produce new content for existing characters. This project explores the potential of replacing static dialogue systems with LLM-powered conversations that maintain the richness and character-specific nuances of hand-crafted dialogue while offering dynamic, real-time interactions.
+
+
+
+\section{Problem Definition \& Challenges}
+\subsection{Challenges of the Project}
+In subculture games, interactions typically involve NPCs (Non-Player Characters) initiating dialogue, followed by players selecting from a predetermined set of 1-3 response options to progress the story. While different dialogue choices may not substantially alter the overall narrative direction, it is crucial that all options remain within the bounds of the intended storyline.
+
+The core objective of this project is to implement a system where players can freely input their desired responses to NPC dialogue, with the NPCs providing real-time, tailored replies. Successfully addressing this challenge could significantly enhance player immersion and interest in gameplay, as players experience more dynamic and personalized interactions within the game world.
+
+The primary challenges of this project include:
+\begin{itemize}
+    \item \textbf{Consistency}: Maintaining character-specific speech patterns and personality traits throughout dialogues.
+    \item \textbf{Appropriateness}: Avoiding controversial or explicit content in generated responses.
+    \item \textbf{Coherence}: Ensuring LLM-generated responses remain relevant to the story, preventing topic drift and adhering to the narrative intentions of the game's writers.
+\end{itemize}
+
+To address these challenges, it will be necessary to develop finely-tuned LLM models for each NPC character, incorporating appropriate story elements, roles, and personality traits.
+
+\subsection{Main Purpose of the Project}
+Building upon the existing challenges, this project aims to develop a server-based LLM solution that can handle real-time dialogue generation while maintaining character consistency. Our key hypotheses and objectives include:
+\begin{itemize}
+\item \textbf{Cost-Effective Scaling}: Assuming a userbase of 10,000+ concurrent users, traditional API-based solutions from OpenAI or Anthropic would be prohibitively expensive. We propose fine-tuning open-source models like Mistral-7B to minimize operational costs.
+\item \textbf{Deployment Strategy}: We will explore two potential approaches:
+    \begin{itemize}
+        \item Server-based LLM capable of handling multiple concurrent inference requests
+        \item Lightweight, device-local LLM that can be distributed with game installation
+    \end{itemize}
+
+\item \textbf{Technical Implementation}:
+    \begin{itemize}
+        \item Utilize attention mechanisms to embed character personalities and contextual situations
+        \item Optimize dialogue generation through prompt-tuning
+        \item Incorporate real-time CLIP-based image processing to generate context-aware dialogue based on in-game camera views
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Related Works}
+Recent advancements in character-based dialogue systems and large language models have created new opportunities for dynamic, personality-consistent conversation generation. This section examines key developments across commercial implementations and academic research that inform our approach.
+
+\subsection{Commercial Implementation Analysis}
+Character.ai represents a significant milestone in deployable character-based dialogue systems. Their implementation demonstrates the feasibility of maintaining consistent character personalities across multiple concurrent conversations while managing computational resources effectively. The platform's success in handling multiple simultaneous users provides valuable insights into scalable architecture design for character-based dialogue systems.
+
+\subsection{Academic Research Foundations}
+Recent academic work has established crucial frameworks for personality-consistent dialogue generation:
+
+\textbf{Parameter-Efficient Fine-tuning Approaches:}
+\begin{itemize}
+\item The PEFT-U framework \cite{clarke2024} introduces a novel approach to user personalization in language models. By implementing adapter-based fine-tuning techniques, PEFT-U achieves remarkable efficiency in adapting pre-trained models to individual user characteristics while maintaining model performance. This advancement is particularly relevant for our goal of creating character-specific dialogue models with minimal computational overhead.
+\end{itemize}
+
+\textbf{Character Alignment and Personality Modeling:}
+\begin{itemize}
+\item "Large Language Models Meet Harry Potter" \cite{chen2023} presents a comprehensive framework for character alignment in dialogue systems. The study introduces innovative techniques for maintaining personality consistency through carefully constructed attribute and relation matrices. Their methodology demonstrates how to effectively capture and maintain character-specific traits across extended dialogue sequences.
+\item Character-LLM \cite{shao2023} builds upon this foundation by introducing a trainable agent specifically designed for role-playing scenarios. The system employs a novel architecture that combines transformer-based language modeling with personality embedding layers, achieving superior performance in maintaining character consistency across diverse conversation contexts.
+\end{itemize}
+
+\textbf{Multi-Character Dialogue Systems:}
+\begin{itemize}
+\item RoleLLM \cite{wang2023} provides a comprehensive benchmark for evaluating role-playing capabilities in large language models. The study introduces evaluation metrics specifically designed for assessing personality consistency and response appropriateness in character-based dialogue systems. Their findings suggest that attention-based architectures with character-specific prompt tuning achieve optimal performance in maintaining distinct personalities.
+\item The Neeko framework \cite{yu2024} introduces dynamic LoRA (Low-Rank Adaptation) techniques for efficient multi-character role-playing. Their approach demonstrates how to switch between different character personalities with minimal computational overhead, achieving a 75\% reduction in parameter storage requirements while maintaining 95\% of the original performance metrics.
+\end{itemize}
+
+\textbf{Language-Specific Implementations:}
+\begin{itemize}
+\item CharacterGLM \cite{zhou2023} addresses the unique challenges of implementing character-based dialogue systems in Chinese language contexts. Their work provides valuable insights into handling language-specific nuances while maintaining character consistency, achieving state-of-the-art performance in Chinese character dialogue generation.
+\end{itemize}
+
+
+
+\section{Datasets}
+In this project, \textbf{Harry-Potter-Dialogue-Dataset} introduced by \cite{chen2023} is used for fine-tuning LLM Models and standard for evaluating their purposes.
+
+Harry Potter Dialogue is a dialogue dataset that integrates with scene, attributes and relations which are dynamically changed as the storyline goes on, which is deliberately designed to be used for researches on more human-like conversational systems in practice. For example, virtual assistant, NPC in games, etc. Moreover, HPD can both support dialogue generation and retrieval tasks.
+
+It provides information about each character's 13 attributes such ad Gender, Age, Belongings, Hobby and Spells. Information about relations between characters is also given, which lets LLM to create more appropriate dialogues regarding to the context of the full story.
+
+
+
+\section{State-of-the-art methods and baselines}
+Our methodology integrates recent advances in prompt engineering, model optimization, and evaluation techniques to create a scalable, character-consistent dialogue system.
+\subsection{System Architecture}
+The proposed system follows a four-stage pipeline for dialogue generation and optimization:
+
+\textbf{A. Dataset Processing and Character Embedding}
+
+Our approach begins with comprehensive character context extraction, employing semantic role labeling techniques similar to \cite{fan2023}. The process includes:
+\begin{itemize}
+\item Automated extraction of character-specific dialogue patterns and personality traits
+\item Generation of ground truth character descriptions using attribute-relation matrices
+\item Creation of dialogue-specific datasets with preserved contextual information
+\end{itemize}
+
+\textbf{B. Model Implementation and Fine-tuning}
+
+We implement a modified Mistral-7B architecture with several key enhancements:
+\begin{itemize}
+\item PEFT-U fine-tuning \cite{clarke2024} for efficient parameter adaptation
+\item Dynamic prompt generation system using transformer-based architectures
+\item Character-specific embedding layers for personality consistency inspired by \cite{shao2023}
+\end{itemize}
+
+\textbf{C. Evaluation Framework}
+
+Our evaluation system employs multiple metrics to ensure dialogue quality:
+\begin{itemize}
+\item Semantic similarity assessment using Solar Embedding Model
+\item Natural language quality evaluation through ROUGE-L and METEOR metrics
+\item Visual coherence evaluation using CLIP-based scoring
+\item Real-time performance monitoring for latency and resource utilization
+\end{itemize}
+
+\textbf{D. Continuous Optimization}
+
+The system implements a feedback loop for ongoing improvement:
+\begin{itemize}
+\item Aggregation of evaluation metrics through weighted scoring
+\item Prompt optimization using advanced CoOp/CoCoOp techniques
+\item Dynamic adjustment of character embeddings based on interaction history
+\end{itemize}
+\subsection{Technical Implementation Details}
+Our implementation addresses several key technical challenges:
+\textbf{Scalability and Resource Management}
+To handle 10,000+ concurrent users, we implement:
+\begin{itemize}
+\item Distributed inference architecture with load balancing
+\item Caching mechanisms for frequently accessed character embeddings
+\item Efficient parameter sharing across multiple character instances
+\end{itemize}
+\textbf{Real-time Processing Pipeline}
+The system maintains real-time performance through:
+\begin{itemize}
+\item Asynchronous processing of CLIP-based visual inputs
+\item Parallel computation of character embeddings and dialogue generation
+\item Optimized attention mechanisms for faster inference
+\end{itemize}
+\textbf{Character Consistency Mechanisms}
+To maintain consistent character personalities, we employ:
+\begin{itemize}
+\item Attention-based character trait preservation
+\item Dynamic context windows for maintaining conversation history
+\item Personality embedding layers with continuous updates
+\end{itemize}
+This comprehensive methodology enables our system to generate contextually appropriate, character-consistent dialogue while maintaining scalability and performance requirements for large-scale deployment.
+
+\subsection{Evaluation}
+
+\textbf{Semantic Similarity} \\
+To assess how well the generated responses match the ground truth, we will use the Solar Embedding Model to compute semantic similarity between the generated dialogues and the reference answers.
+
+\textbf{Semantic Role Labeling} \\
+Semantic Role Labeling (SRL) will be applied to evaluate the roles of entities and their actions in the generated responses, ensuring that they align with the narrative structure.
+
+\textbf{Evaluation Metrics} \\
+We will use a variety of established evaluation metrics to measure dialogue quality:
+\begin{itemize}
+    \item \textbf{METEOR} (Metric for Evaluation of Translation with Explicit ORdering)
+    \item \textbf{ROUGE-L} (Recall-Oriented Understudy for Gisting Evaluation)
+    \item \textbf{CIDEr} (Consensus-based Image Description Evaluation)
+    \item \textbf{BLEU} (Bilingual Evaluation Understudy)
+    \item \textbf{Perplexity}: a common metric for assessing the fluency of language models.
+\end{itemize}
+
+\textbf{Personality Consistency Evaluation} \\
+For personality-based models, we will employ the \textbf{Big Five Inventory (BFI) Test} and \textbf{LIWC (Linguistic Inquiry and Word Count)} software to evaluate how well the generated dialogues reflect the intended personality traits.
+
+
+
+\bibliography{main}
+\bibliographystyle{icml2019}
+
+\clearpage
+
+\end{document}
